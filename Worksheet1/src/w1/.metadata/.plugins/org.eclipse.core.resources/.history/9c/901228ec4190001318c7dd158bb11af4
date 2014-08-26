@@ -1,0 +1,98 @@
+package Stacks;
+
+import java.util.Arrays;
+
+public class W4Q6 {
+
+	public static void main(String[] args) {
+
+		//String s = "SEQ(PAR(boil, kettle, wash, cup), add teabag, WAIT({kettle, boiled}, add water, add milk)";
+		// String s = "(({([({{([[[[{}]]]])}})])}))"; //test
+		String s = "((";			// test
+		char [] c = s.toCharArray();
+		
+		System.out.println(ParenMatch(c, s.length()));
+	}
+
+	public static boolean ParenMatch(char[] array, int n) {
+		ArrayStack S = new ArrayStack();
+		boolean isMatch = false;
+		
+		if(array.length == 0){
+			System.out.println("Empty string: Unable to calculate matching parentheses");
+			return false;
+		}
+
+		for (int i = 0; i <= n - 1; i++) {
+			if (array[i] == '(' || array[i] == '{' || array[i] == '[') {
+				S.push(array[i]);
+				// System.out.println(S.top());
+			} else if ((array[i] == ')' || array[i] == '}' || array[i] == ']')) {
+				if (S.isEmpty()) {
+					return false;
+				}
+
+				else {
+					char temp = (char) S.pop();
+
+					if (temp == '(') {
+						switch (array[i]) {
+						case (')'):
+							isMatch = true;
+							break;
+
+						case (']'):
+							return false;
+
+						case ('}'):
+							return false;
+						default:
+						}
+					}
+
+					if (temp == '{') {
+						switch (array[i]) {
+						case (')'):
+							return false;
+
+						case (']'):
+							return false;
+
+						case ('}'):
+							isMatch = true;
+							break;
+						default:
+						}
+					}
+
+					if (temp == '[') {
+						switch (array[i]) {
+						case (')'):
+							return false;
+
+						case (']'):
+							isMatch = true;
+							break;
+
+						case ('}'):
+							return false;
+						default:
+						}
+
+					}
+
+				}
+			}
+		}
+
+		if (S.isEmpty()) {
+			return true;
+		}
+
+		else {
+			return false;
+		}
+
+	}
+
+}

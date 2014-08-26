@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+/Users/noreen/Google Drive/MSc Com Sci Semester 2.1/Advanced Java & DSA/Worksheets/Worksheet1/src/w1/GeneralizedStacks/.metadata/.plugins/org.eclipse.jdt.core

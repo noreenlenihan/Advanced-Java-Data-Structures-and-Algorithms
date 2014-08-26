@@ -1,0 +1,19 @@
+package w8;
+
+public interface VectorQueue<T> {
+	public void enqueue(T value);
+	public T dequeue();
+	public T front();
+	public boolean isEmpty();
+	public int size();
+	public T elemAtRank(int rank);
+
+	public T replaceAtRank(int rank, T element);
+
+	public void insertAtRank(int rank, T element);
+
+	public T removeAtRank(int rank);
+		
+	}
+
+

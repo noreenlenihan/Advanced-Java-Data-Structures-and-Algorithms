@@ -1,0 +1,51 @@
+package w9;
+
+public class LinkedListQueue<T> implements Queue<T>{
+	private LinkedListVector<T> queuelist = new LinkedListVector<T>();
+	
+	@Override
+	public void enqueue(T value) {
+		queuelist.insertLast(value);
+		
+	}
+
+	@Override
+	public T dequeue() {
+		return queuelist.remove(queuelist.first());
+		
+	}
+
+	@Override
+	public T front() {
+		return queuelist.first().element();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return queuelist.isEmpty();
+	}
+
+	@Override
+	public int size() {
+		return queuelist.size();
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> list = new LinkedListVector<Integer>();
+		
+		Position<String> f = list.insertFirst("Rem");
+		list.insertFirst("Peppa");
+		list.insertAfter(f, "George");
+		
+		// Display the contents of the list
+		Position<String> p = list.first();
+		while (p != list.last()) {
+			System.out.println(p.element());
+			p = list.next(p);
+		}
+		System.out.println(p.element());
+
+	}
+
+
+}

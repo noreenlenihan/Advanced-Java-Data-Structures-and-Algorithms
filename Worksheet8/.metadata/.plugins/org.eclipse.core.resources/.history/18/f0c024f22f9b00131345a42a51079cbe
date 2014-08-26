@@ -1,0 +1,141 @@
+package w8;
+
+public class ArrayVector<T> implements Vector<T>, VectorQueue<T> {
+	private T[] array = null;
+	private int n = 0;
+	private int rank = 0;
+	int capacity;
+	
+	public ArrayVector() {
+		this(50);
+	}
+	
+	public ArrayVector(int capacity){
+		array = (T[]) new Object[capacity];
+		capacity =array.length;
+		//System.out.println(capacity);
+	}
+	
+	@Override
+	public int size() {
+		return n;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return n == 0;
+	}
+
+	@Override
+	public T elemAtRank(int rank) {
+		if (rank < 0 || rank > (n - 1)) throw new RankOutOfBoundsException();
+		return array[rank];
+	}
+
+	@Override
+	public T replaceAtRank(int rank, T element) {
+		if (rank < 0 || rank > (n - 1)) throw new RankOutOfBoundsException();
+		T temp = array[rank];
+		array[rank] = element;
+		
+		return temp;
+	}
+
+	@Override
+	public void insertAtRank(int rank, T element) {
+		if (rank < 0 || rank > n) throw new RankOutOfBoundsException();
+		//System.out.println(n);
+		//System.out.println(capacity);
+		if (n == array.length){
+			int capacity2 = array.length * 2;
+			T[] temp = array;
+			array = (T[]) new Object[capacity2];
+			
+//			T[] extendedArray = (T[]) new Object[capacity];
+			for(int i =0; i <= n -1; i++){
+				array[i] = temp[i];
+			}
+//			array = extendedArray;
+			//System.out.println(array.length);
+			//System.out.println("xxx");
+			//System.out.println(n);
+			//System.out.println(capacity);
+			
+		}
+		
+		for(int i = n - 1; i >= rank; i--){
+			array[i+1] = array[i];
+		}
+		
+		array[rank] = element;
+		n++;
+		//System.out.println("size: "+ n);
+		//System.out.println("length: "+array.length);
+		
+		
+	}
+
+	@Override
+	public T removeAtRank(int rank) {
+		if (rank < 0 || rank > n - 1) throw new RankOutOfBoundsException();
+		T e = array[rank];
+		
+		for(int i = rank; i <= (n - 2); i++){
+			array[i] = array[i + 1];
+		}
+		array[n- 1] = null;
+		n--;
+		return e;
+	}
+	
+	@Override
+	public String toString() {
+		String out = "[" + size() + "]: ";
+		for (int i = 0; i < array.length; i++) {
+			out += " \"" + array[i] + "\",";
+		}
+		return out;
+		
+	@Override
+	public void enqueue(T value) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public T dequeue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public T front() {
+		// TODO Auto-generated method stub
+		if( isEmpty()) throw new QueueEmptyException();
+		return array[rank];
+		
+	}
+
+
+	}
+	
+	public static void main(String[] args) {
+		Vector<String> vector = new ArrayVector<String>(10);
+		
+		try{
+		vector.insertAtRank(0,"A");
+		System.out.println(vector);
+		vector.insertAtRank(1, "P");
+		System.out.println(vector);
+		
+		
+		vector.insertAtRank(2, "E");
+		System.out.println(vector);		}
+		catch(Exception ex){
+			System.out.println("Sorry, vector is either too full or too empty!");
+	}
+		
+	}
+
+}

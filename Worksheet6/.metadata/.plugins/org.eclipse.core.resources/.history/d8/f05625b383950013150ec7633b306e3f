@@ -1,0 +1,5 @@
+package worksheet6;
+
+public interface Queue {
+
+}

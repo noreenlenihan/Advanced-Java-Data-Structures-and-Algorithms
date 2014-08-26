@@ -1,0 +1,7 @@
+package ws3;
+
+public class StackFullException extends RuntimeException {
+
+	
+
+}

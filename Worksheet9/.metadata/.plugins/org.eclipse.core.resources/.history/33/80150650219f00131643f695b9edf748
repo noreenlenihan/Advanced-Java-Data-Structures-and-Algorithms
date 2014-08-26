@@ -1,0 +1,194 @@
+package w9;
+
+public class LinkedListVector<T> implements List<T> {
+	private class Node implements Position<T> {
+		T element;
+		Node prev;
+		Node next;
+
+		public Node(T element) {
+			this.element = element;
+		}
+
+		public T element() {
+			return element;
+		}
+	}
+
+	private Node front = null;
+	private Node rear = null;
+	private int size = 0;
+
+	@Override
+	public int size() {
+		return size;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	@Override
+	public Position<T> first() {
+		if (front == null)
+			throw new ListEmptyException();
+		return front;
+	}
+
+	@Override
+	public Position<T> last() {
+		if (rear == null)
+			throw new ListEmptyException();
+		return rear;
+	}
+
+	@Override
+	public Position<T> prev(Position<T> p) {
+		return ((Node) p).prev;
+	}
+
+	@Override
+	public Position<T> next(Position<T> p) {
+		if (p == rear)
+			throw new BoundaryViolationException();
+		return ((Node) p).next;
+	}
+
+	@Override
+	public Position<T> insertFirst(T e) {
+		Node n = new Node(e);
+		if (front == null) {
+			rear = n;
+		} else {
+			n.next = front;
+			front.prev = n;
+		}
+
+		front = n;
+		size++;
+		return n;
+	}
+
+	@Override
+	public Position<T> insertLast(T e) {
+		Node n = new Node(e);
+		if (rear == null) {
+			front = n;
+		} else {
+			n.prev = rear;
+			rear.next = n;
+		}
+
+		rear = n;
+		size++;
+		return n;
+	}
+
+	@Override
+	public Position<T> insertBefore(Position<T> p, T e) {
+		if (p == front){
+			return insertFirst(e);
+		}
+		Node n = new Node(e);
+		n.prev = ((Node)p).prev;
+		n.next = (Node)p;
+		((Node)p).prev.next = n;
+		((Node)p).prev = n;
+		size++;
+		
+		return n;
+	}
+
+	@Override
+	public Position<T> insertAfter(Position<T> p, T e) {
+		if (p == rear) {
+			insertLast(e);
+		}
+
+		Node n = new Node(e);
+		n.next = ((Node) p).next;
+		n.prev = (Node) p;
+		((Node) p).next.prev = n;
+		((Node) p).next = n;
+
+		size++;
+		return n;
+	}
+
+	@Override
+	public T replace(Position<T> p, T e) {
+	
+		T temp = p.element();
+		Node n = (Node) p;
+		n.element = e; 
+		return temp;
+	}
+
+	@Override
+	public T remove(Position<T> p) {
+		if (p == front) {
+			front = front.next;
+		} else {
+			((Node) p).prev.next = ((Node) p).next;
+		}
+
+		if (p == rear) {
+			rear = rear.prev;
+		} else {
+			((Node) p).next.prev = ((Node) p).prev;
+		}
+
+		size--;
+		return p.element();
+	}
+
+	public String toString() {
+		String out = "[" + size + "]: ";
+		Node n = front;
+		while (n != null) {
+			out += "\"" + n.element + "\",";
+			n = n.next;
+		}
+		return out;
+	}
+
+	public static void main(String[] args) {
+		LinkedListVector<String> link = new LinkedListVector<String>();
+		
+		Position<String> a = link.insertLast("W");
+		System.out.println(link);
+
+		link.insertBefore(a, "p");
+		System.out.println(link);
+		
+		Position<String> b = link.insertLast("O");
+		System.out.println(link);
+		
+		link.remove(a);
+		System.out.println(link);
+
+		Position<String> c = link.insertLast("E");
+		System.out.println(link);
+		
+		Position<String> d = link.insertFirst("T");
+		System.out.println(link);
+		
+		link.insertBefore(b, "m");
+		System.out.println(link);
+		
+		link.insertAfter(d, "g");
+		System.out.println(link);
+		
+		link.replace(b, "X");
+		System.out.println(link);
+		
+		link.remove(b);
+		System.out.println(link);
+		
+		link.insertBefore(d, "kk")
+		System.out.println(link.size);
+
+	}
+
+}

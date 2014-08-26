@@ -1,0 +1,13 @@
+package w8;
+
+public class VectorQueue {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Vector<Integer> vectorQueue = new ArrayVector<Integer>();
+		
+		
+		
+	}
+
+}

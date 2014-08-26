@@ -1,0 +1,15 @@
+package w8;
+
+public interface VectorQueue<T> {
+	public void enqueue(T value);
+	public T dequeue();
+	public T front();
+	public boolean isEmpty();
+	public int size();
+		
+		
+		
+		
+	}
+
+

@@ -1,0 +1,81 @@
+/** Question corresponding to Q2 in Worksheet 5
+ * 
+ * @author noreen
+ * 
+ */
+
+package w5;
+
+public class LinkedStack<E> implements Stack<E> {
+	private class Node {
+		E element;
+		Node next;
+
+		public Node(E value) {
+			element = value;
+		}
+	}
+
+	private Node top = null;
+	private int size = 0;
+
+	public int size() {
+		return size;
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public void push(E value) {
+		Node n = new Node(value);
+		n.next = top;
+
+		top = n;
+		size++;
+	}
+
+	public E top() {
+		if (isEmpty()) {
+			throw new StackEmptyException();
+		}
+		return top.element;
+	}
+
+	public E pop() {
+		if (isEmpty()) {
+			throw new StackEmptyException();
+		}
+		E toReturn = top.element;
+
+		top = top.next;
+		size--;
+
+		return toReturn;
+	}
+
+	public String toString() {
+		String out = "[" + size + " element(s)]: ";
+		Node n = top;
+		while (n != null) {
+			out += "[" + n.element + "|-]-> ";
+			n = n.next;
+		}
+		return out;
+	}
+	
+	public static void main(String[] args){
+		LinkedStack<Integer> stk = new LinkedStack<Integer>();
+		
+		stk.push(31);
+		System.out.println(stk);
+		
+		stk.push(34);
+		System.out.println(stk);
+
+		stk.pop();
+		System.out.println(stk);
+
+	}
+
+}

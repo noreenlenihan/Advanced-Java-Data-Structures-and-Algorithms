@@ -1,0 +1,19 @@
+package ws3;
+
+public class StackMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DoubleStack stack = new DoubleStack();
+		
+		stack.push(17);
+		System.out.println(stack);
+		
+		while(stack.size() > 0){
+			System.out.println(stack.pop());
+			System.out.println(stack);
+		}
+
+	}
+
+}

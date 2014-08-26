@@ -1,0 +1,45 @@
+package ws3;
+
+public class LinkedIntegerStack {
+	private Node top = null;
+	private int size = 0;
+	public int size(){
+		return size;
+	}
+	
+	public boolean isEmpty(){
+		if(top == null){
+		return true;
+		}
+		return false;
+	}
+	
+	public void push(int value){
+		Node n = new Node(value);
+		top = n;
+		size++;
+	}
+	
+	public int top(){
+		return 0;
+	}
+	
+	public int pop(){
+		return 0;
+	}
+	
+	private class Node{
+		int element;
+		Node next;
+		
+		public Node(int value){
+			element = value;
+		}
+		
+		
+	}
+	
+	public String toString(){
+		
+	}
+}

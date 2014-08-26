@@ -1,0 +1,183 @@
+package w10;
+
+
+public class ListMap<K, V> implements Map<K, V> {
+	public class ListMapEntry implements Entry<K,V> {
+		K key;
+		V value;
+		
+		public ListMapEntry(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+		
+		@Override
+		public K key() {
+			return key;
+		}
+
+		@Override
+		public V value() {
+			return value;
+		}
+		
+	}
+	
+	private List<Entry<K,V>> list = new LinkedList<Entry<K,V>>();
+	
+	@Override
+	public int size() {
+		return list.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
+	@Override
+	public V get(K k) {
+		Position<Entry<K,V>> position = find(k);
+		if(position == null){
+			return null;
+		}
+		return position.element().value();
+	}
+
+	@Override
+	public V put(K k, V v) {
+		Entry<K,V> E = new ListMapEntry(k, v);
+		Position<Entry<K,V>> position = find(k);
+		if(position == null){
+			list.insertLast(E);
+			return null;
+		}
+		
+		Entry<K,V> temp = list.replace(position, E);
+		
+		return temp.value();
+	}
+
+	@Override
+	public V remove(K k) {
+		Position<Entry<K,V>> position = find(k);
+		if(position == null){
+			return null;
+		}
+		list.remove(position);
+		return position.element().value();
+	}
+	
+	public String toString(){
+		if (list.size() == 0) return "";
+		
+		String output = "[" + size() + "]";
+		Position<Entry<K,V>> first = list.first();
+		while (first != list.last()) {
+			System.out.println(" Key:" + first.element().key() +  "  Value:"+ first.element().value() + "--->");
+			first = list.next(first);
+		}
+		
+		return "";
+	
+	}
+
+	private Position<Entry<K,V>> find(K key) {
+		
+		if(list.isEmpty()){
+			return null;
+		}
+		
+		Position<Entry<K,V>> position = list.first();
+		while(position != list.last()){
+			if(position.element().key() == key){
+				//System.out.println("xxx");
+				return position;
+			}
+			position = list.next(position);
+		}
+		
+		if(position.element().key() == key){
+			return position;
+		}
+		return null;
+	}
+	@Override
+	public Iterator<K> keys() {
+		return new Iterator<K>() {
+			Iterator<Entry<K,V>> iterator = list.iterator();
+			
+			@Override
+			public boolean hasNext() {
+				return iterator.hasNext();
+			}
+
+			@Override
+			public K next() {
+				return iterator.next().key();
+			}
+		};
+	}
+
+	@Override
+	public Iterator<V> values() {
+		return new Iterator<V>() {
+			Iterator<Entry<K,V>> iterator = list.iterator();
+			
+			@Override
+			public boolean hasNext() {
+				return iterator.hasNext();
+			}
+
+			@Override
+			public V next() {
+				return iterator.next().value();
+			}
+		};
+	}
+
+	@Override
+	public Iterator<Entry<K, V>> entries() {
+		return list.iterator();
+	}
+
+	public static void main(String[] args) {
+		
+		Map<String, String> listmap = new ListMap<String, String>();
+		
+		//System.out.println(listmap.size());
+		listmap.put("ie", "Ireland");
+		System.out.println(listmap);
+		
+		listmap.put("uk", "United Kingdom");
+		System.out.println(listmap);
+		
+		listmap.put("us", "USA");
+		System.out.println(listmap);
+		
+		listmap.put("de", "Germany");
+		System.out.println(listmap);
+		
+		listmap.put("fr", "France");
+		System.out.println(listmap);
+		
+		listmap.remove("uk");
+		System.out.println(listmap);
+		
+		listmap.put("us", "United States of America");
+		System.out.println(listmap);
+		
+		listmap.put("es", "Spain");
+		System.out.println(listmap);
+		
+		listmap.put("uk", "United Kingdom");
+		System.out.println(listmap);
+		
+		System.out.println(listmap.get("us"));
+		//System.out.println(listmap.size());
+		
+
+		
+		
+	}
+}

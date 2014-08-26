@@ -1,0 +1,50 @@
+/**
+ * 
+ * 
+ */
+
+package w7;
+
+public class ArrayQueueTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Queue<Integer> queueie = new ArrayQueue<Integer>();
+		
+		queueie.enqueue(10);
+		System.out.println(queueie);
+		
+		queueie.enqueue(5);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(15);
+		System.out.println(queueie);
+		
+		queueie.enqueue(3);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(7);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(20);
+		System.out.println(queueie);
+		
+		int sum=0;
+		while( !queueie.isEmpty()){
+			sum+=queueie.dequeue();
+		}
+		
+		System.out.println("Total value of remaining integers: " + sum);
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+package ws3;
+
+public class ExceptionExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		test();
+	}
+	
+	public static void test(){
+		throw new Exception("An exception");
+	}
+
+}

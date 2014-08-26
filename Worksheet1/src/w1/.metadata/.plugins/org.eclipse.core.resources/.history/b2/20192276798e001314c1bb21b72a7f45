@@ -1,0 +1,28 @@
+package ws3;
+
+public class LinkedIntegerStack {
+	
+	public int size(){
+		return 0;
+	}
+	
+	public boolean isEmpty(){
+		return true;
+	}
+	
+	public void push(int value){
+		
+	}
+	
+	public int top(){
+		return 0;
+	}
+	
+	public int pop(){
+		return 0;
+	}
+	
+	public String toString(){
+		
+	}
+}

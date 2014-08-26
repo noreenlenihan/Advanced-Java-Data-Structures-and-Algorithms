@@ -1,0 +1,107 @@
+package worksheet6;
+
+public class LinkedQueue<T> implements Queue<T> {
+	private class Node {
+		T element;
+		Node next;
+
+		public Node(T value) {
+			element = value;
+		}
+	}
+
+	private Node front = null;
+	private Node rear = null;
+	private int size = 0;
+
+	public int size() {
+		return size;
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public void enqueue(T value) {
+		Node n = new Node(value);
+		if(rear == null){
+			front = n;
+		}
+		else{
+			rear.next = n;
+		}
+		rear = n;
+
+		size++;
+	}
+
+	public T front() {
+		if(isEmpty()){
+			throw new QueueEmptyException();
+		}
+		return front.element;
+	}
+
+
+	public String toString() {
+		String out = "[" + size + " element(s)]: ";
+		Node n = front;
+		while (n != null) {
+			out += "[" + n.element + "|-]-> ";
+			n = n.next;
+		}
+		return out;
+	}
+	
+
+
+	public T dequeue() {
+		if (isEmpty()) {
+			throw new QueueEmptyException();
+		}
+		Node L = front;
+		front = front.next;
+		
+		if(front == null){
+			rear = null;
+		}
+		else{
+			L.next = null;
+		}
+		size--;
+		
+		return L.element;
+	}
+
+	public static void main(String[] args){
+		LinkedQueue<String> queue = new LinkedQueue<String>();
+		
+		queue.enqueue("Noreen");
+		System.out.println(queue);
+		
+		queue.enqueue("likes");
+		System.out.println(queue);
+		
+		queue.enqueue("Java");
+		System.out.println(queue);
+		
+		System.out.println(queue.front());
+		
+		queue.dequeue();
+		System.out.println(queue);
+		
+		queue.dequeue();
+		System.out.println(queue);
+		
+		queue.dequeue();
+		System.out.println(queue);
+		
+		queue.dequeue();
+		System.out.println(queue);
+		
+		
+		System.out.println("hello");
+	}
+	
+
+}

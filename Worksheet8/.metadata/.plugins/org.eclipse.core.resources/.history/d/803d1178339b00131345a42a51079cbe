@@ -1,0 +1,38 @@
+package w8;
+
+public class VectorQueueTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		VectorQueue<Integer> vectory = new ArrayVector<Integer>();
+		
+		vectory.enqueue(10);
+		System.out.println(vectory);
+		
+		vectory.enqueue(5);
+		System.out.println(vectory);
+		//System.out.println(vectory.size());
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+		
+		vectory.enqueue(15);
+		System.out.println(vectory);
+		
+		vectory.enqueue(3);
+		System.out.println(vectory);
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+
+		vectory.enqueue(7);
+		System.out.println(vectory);
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+		
+		vectory.enqueue(20);
+		System.out.println(vectory);
+	}
+
+}

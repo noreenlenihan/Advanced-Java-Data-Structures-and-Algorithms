@@ -1,0 +1,79 @@
+/** Implementation of VectorQueue as per Question 2 of Worksheet 8
+ * 
+ * @author noreen
+ * 
+ */
+
+
+package w8;
+
+public class VectorQueue<T> implements Queue<T> {
+	private Vector<T> vector = new ArrayVector<T>();
+
+	public void enqueue(T element) {
+		vector.insertAtRank(vector.size(), element);
+
+	}
+
+	public T dequeue() {
+		return vector.removeAtRank(0);
+	}
+
+	public T front() {
+		return vector.elemAtRank(0);
+
+	}
+
+	public boolean isEmpty() {
+		return vector.isEmpty();
+	}
+
+	public int size() {
+		return vector.size();
+	}
+
+	public String toString() {
+		return vector.toString();
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Queue<Integer> vectory = new VectorQueue<Integer>();
+
+		vectory.enqueue(10);
+		System.out.println(vectory);
+
+		vectory.enqueue(5);
+		System.out.println(vectory);
+
+		vectory.dequeue();
+		System.out.println(vectory);
+
+		vectory.enqueue(15);
+		System.out.println(vectory);
+
+		vectory.enqueue(3);
+		System.out.println(vectory);
+
+		vectory.dequeue();
+		System.out.println(vectory);
+
+		vectory.enqueue(7);
+		System.out.println(vectory);
+
+		vectory.dequeue();
+		System.out.println(vectory);
+
+		vectory.enqueue(20);
+		System.out.println(vectory);
+
+		int sum = 0;
+		while (!vectory.isEmpty()) {
+			sum += vectory.dequeue();
+		}
+
+		System.out.println("Total value of remaining integers: " + sum);
+
+	}
+}

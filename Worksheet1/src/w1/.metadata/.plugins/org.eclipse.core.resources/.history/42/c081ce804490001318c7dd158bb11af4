@@ -1,0 +1,54 @@
+/** This program implements a class, ArrayStach, that implements the Stack interface
+ * using an array-based method.
+ * 
+ * Question 1
+ * 
+ * Student: Noreen Lenihan
+ * Student ID: 13204807
+ * Worksheet 4: Generalized Stacks
+ * 
+ */
+
+package Stacks;
+
+
+public class ArrayStack implements Stack{
+	private Object[] array = new Object[200];
+	private int top = 0;
+
+	public int size() {
+		return top;
+	}
+
+	public boolean isEmpty() {
+		return top == 0;
+	}
+
+	public void push(Object value) {
+		if (top == array.length)
+			throw new StackFullException();
+		array[top++] = value;
+	}
+
+	public Object top() {
+		if (top == 0)
+			throw new StackEmptyException();
+		return array[top - 1];
+	}
+
+	public Object pop() {
+		if (top == 0)
+			throw new StackEmptyException();
+
+		return array[--top];
+	}
+
+	public String toString() {
+		String out = "[" + top + " / " + array.length + "]";
+		for (int i = 0; i < array.length; i++) {
+			out += " " + array[i];
+		}
+		return out;
+	}
+
+}

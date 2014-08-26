@@ -1,0 +1,92 @@
+package w8;
+
+public class VectorQueue<T> implements Queue<T>{
+	private T[] array = null;
+	private int front = 0;
+	private int rear = 0;
+	
+	public VectorQueue() {
+		this(50);
+	}
+	
+	public VectorQueue(int capacity){
+		array = (T[]) new Object[capacity];
+	}
+	@Override
+	public void enqueue(T value) {
+		// TODO Auto-generated method stub
+		if ( size() == array.length) throw new VectorFullException();
+		array[rear] = value;
+		rear = (rear + 1) % array.length;
+		n++;
+		
+	}
+
+	@Override
+	public T dequeue() {
+		// TODO Auto-generated method stub
+		if (isEmpty()) throw new VectorEmptyException();
+		T temp = array[front];
+		array[front] = null;
+		front = (front + 1) % array.length;
+		n--;
+		return temp;
+	}
+
+	@Override
+	public T front() {
+		// TODO Auto-generated method stub
+		if( isEmpty()) throw new VectorEmptyException();
+		return array[front];
+	
+	}
+
+
+}
+
+	/**public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Queue<Integer> vectory = new VectorQueue<Integer>();
+		
+		vectory.enqueue(10);
+		System.out.println(vectory);
+		
+		vectory.enqueue(5);
+		System.out.println(vectory);
+		//System.out.println(vectory.size());
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+		
+		vectory.enqueue(15);
+		System.out.println(vectory);
+		
+		vectory.enqueue(3);
+		System.out.println(vectory);
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+
+		vectory.enqueue(7);
+		System.out.println(vectory);
+		
+		vectory.dequeue();
+		System.out.println(vectory);
+		
+		vectory.enqueue(20);
+		System.out.println(vectory);
+	
+	
+	int sum = 0;
+	while( !vectory.isEmpty()){
+		sum+=vectory.dequeue();
+	}
+	
+	System.out.println("Total value of remaining integers: " + sum);
+	
+}*/
+	
+	
+
+	
+

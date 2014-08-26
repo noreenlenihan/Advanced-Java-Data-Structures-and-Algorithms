@@ -1,0 +1,5 @@
+package w9;
+
+public interface Map<K, V> {
+
+}

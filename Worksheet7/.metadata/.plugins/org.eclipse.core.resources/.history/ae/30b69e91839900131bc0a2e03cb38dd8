@@ -1,0 +1,38 @@
+package w7;
+
+public class ArrayQueueTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Queue<Integer> queueie = new ArrayQueue<Integer>(10);
+		
+		queueie.enqueue(10);
+		System.out.println(queueie);
+		
+		queueie.enqueue(10);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(15);
+		System.out.println(queueie);
+		
+		queueie.enqueue(3);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(7);
+		System.out.println(queueie);
+		
+		queueie.dequeue();
+		System.out.println(queueie);
+		
+		queueie.enqueue(20);
+		System.out.println(queueie);
+		
+	}
+
+}

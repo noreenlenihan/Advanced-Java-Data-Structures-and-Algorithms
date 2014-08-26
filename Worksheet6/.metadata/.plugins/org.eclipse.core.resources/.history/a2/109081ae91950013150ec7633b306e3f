@@ -1,0 +1,113 @@
+/** Question 1 of Worksheet 6
+ * 
+ * This program implements a generic Linked Queue using the
+ * (generic) Queue interface. We further test this in the main.
+ * 
+ * @author noreen
+ * 
+ */
+
+package worksheet6;
+
+public class LinkedQueue<T> implements Queue<T> {
+	private class Node {
+		T element;
+		Node next;
+
+		public Node(T value) {
+			element = value;
+		}
+	}
+
+	private Node front = null;
+	private Node rear = null;
+	private int size = 0;
+
+	public int size() {
+		return size;
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public void enqueue(T value) {
+		Node n = new Node(value);
+		if (rear == null) {
+			front = n;
+		} else {
+			rear.next = n;
+		}
+		rear = n;
+
+		size++;
+	}
+
+	public T front() {
+		if (isEmpty()) {
+			System.out.println("Front is null"); // Test for when queue is
+													// initially empty
+			return null; // without using exception for one-off case
+		}
+		return front.element;
+	}
+
+	public String toString() {
+		String out = "[" + size + "]: ";
+		Node n = front;
+		while (n != null) {
+			out += "[" + "\"" + n.element + "\"" + "]-> ";
+			n = n.next;
+		}
+		return out;
+	}
+
+	public T dequeue() {
+		if (isEmpty()) {
+			throw new QueueEmptyException();
+		}
+		Node L = front;
+		front = front.next;
+
+		if (front == null) {
+			rear = null;
+		} else {
+			L.next = null;
+		}
+		size--;
+
+		return L.element;
+	}
+
+	public static void main(String[] args) {
+		Queue<String> queue = new LinkedQueue<String>();
+
+		try {
+			// queue.front();
+			queue.enqueue("A");
+			System.out.println(queue);
+
+			queue.enqueue("P");
+			System.out.println(queue);
+
+			queue.enqueue("E");
+			System.out.println(queue);
+
+			// Further testing
+			System.out.println("Front at this point is: " + queue.front());
+
+			queue.dequeue();
+			System.out.println(queue);
+
+			queue.dequeue();
+			System.out.println(queue);
+
+			queue.dequeue();
+			System.out.println(queue);
+		} catch (QueueEmptyException e) {
+			System.out.println("Error: Empty Queue");
+		}
+
+	}
+
+}

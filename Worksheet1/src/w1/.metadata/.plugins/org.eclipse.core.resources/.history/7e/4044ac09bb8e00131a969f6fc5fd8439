@@ -1,0 +1,16 @@
+package ws3;
+
+public class StackMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedIntegerStack stack = new LinkedIntegerStack();
+		
+		stack.push(1);
+		System.out.println(stack);
+		
+		
+
+	}
+
+}

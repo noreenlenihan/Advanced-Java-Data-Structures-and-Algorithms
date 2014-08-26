@@ -1,0 +1,54 @@
+package w7;
+
+public class ArrayQueue<T> implements Queue<T> {
+	
+	private T[] array = null;
+	private int rear = 0;
+	private int front = 0;
+	
+	public ArrayQueue() {
+		this(50);
+	}
+	
+	public ArrayQueue(int capacity){
+		array = (T[]) new Object[capacity];
+	}
+
+	@Override
+	public void enqueue(T value) {
+		// TODO Auto-generated method stub
+		array[rear] = value;
+		rear = (rear + 1) % array.length;
+		
+	}
+
+	@Override
+	public T dequeue() {
+		// TODO Auto-generated method stub
+		T temp = array[front];
+		array[front] = null;
+		front = (front + 1) % array.length;
+		return temp;
+	}
+
+	@Override
+	public T front() {
+		// TODO Auto-generated method stub
+		return array[front];
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return rear == front;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return (rear - front) % array.length;
+	}
+	
+	
+
+}

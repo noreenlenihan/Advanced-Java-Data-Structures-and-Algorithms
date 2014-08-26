@@ -1,0 +1,9 @@
+package ws3;
+
+public class StackFullException extends RuntimeException {
+
+	public StackFullException(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+}
